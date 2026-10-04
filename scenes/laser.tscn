@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://def840gn2d0hs"]
+
+[ext_resource type="Script" uid="uid://befatabuqr4qi" path="res://scripts/laser.gd" id="1_a7dhc"]
+[ext_resource type="Texture2D" uid="uid://la5hs10a20e8" path="res://sprites/sr2116ea462fe88.png" id="1_xmihv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_soqyk"]
+size = Vector2(58, 74)
+
+[node name="Laser" type="CharacterBody2D" unique_id=1743215020]
+collision_layer = 0
+script = ExtResource("1_a7dhc")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1239694390]
+position = Vector2(0, -40)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_xmihv")
+
+[node name="LaserHurtbox" type="Area2D" parent="." unique_id=1709970891]
+position = Vector2(0, -40)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="LaserHurtbox" unique_id=41319977]
+polygon = PackedVector2Array(26, 37, 45, 0, 45, -8, 30.066286, -38.000004, 23, -38, 0, -7, -22, -38, -29.967731, -38.000004, -45, -7, -45, 0, -26, 37)
+
+[node name="LaserHitbox" type="CollisionShape2D" parent="." unique_id=858697034]
+position = Vector2(0, -40)
+shape = SubResource("RectangleShape2D_soqyk")
+
+[connection signal="area_entered" from="LaserHurtbox" to="." method="_on_laser_hurtbox_area_entered"]

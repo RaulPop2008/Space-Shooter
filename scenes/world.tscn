@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://dcsdwa227kii8"]
+
+[ext_resource type="Script" uid="uid://b1wpcnf8766gj" path="res://scripts/world.gd" id="1_4wyf3"]
+[ext_resource type="Texture2D" uid="uid://cxgxvh4na33aa" path="res://sprites/sr28ac7e88e93cc.png" id="1_nnsk1"]
+[ext_resource type="PackedScene" uid="uid://b8i8pndl7ssvd" path="res://scenes/player.tscn" id="2_rwgxs"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_soqyk"]
+b = Vector2(0, 1600)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_rwgxs"]
+a = Vector2(1200, 0)
+b = Vector2(1200, 1600)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_4wyf3"]
+a = Vector2(1200, 1600)
+b = Vector2(0, 1600)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_k0juu"]
+b = Vector2(1200, 0)
+
+[node name="World" type="Node2D" unique_id=1294018659]
+script = ExtResource("1_4wyf3")
+
+[node name="Borders" type="StaticBody2D" parent="." unique_id=1006187867]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders" unique_id=400380117]
+shape = SubResource("SegmentShape2D_soqyk")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Borders" unique_id=838756694]
+shape = SubResource("SegmentShape2D_rwgxs")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Borders" unique_id=1794301104]
+shape = SubResource("SegmentShape2D_4wyf3")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Borders" unique_id=2064577659]
+shape = SubResource("SegmentShape2D_k0juu")
+
+[node name="Background" type="Sprite2D" parent="." unique_id=1854204189]
+position = Vector2(600, 800)
+texture = ExtResource("1_nnsk1")
+
+[node name="Player" parent="." unique_id=92526806 instance=ExtResource("2_rwgxs")]
+position = Vector2(600, 1200)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=281350676]

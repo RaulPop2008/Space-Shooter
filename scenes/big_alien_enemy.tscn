@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://bihov20c4ywxv"]
+
+[ext_resource type="Texture2D" uid="uid://yak1jis3ddwr" path="res://sprites/sr2d604b0b7bc53.png" id="1_jowhr"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jowhr"]
+radius = 52.153618
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lxvb4"]
+radius = 71.11259
+
+[node name="BigAlienEnemy" type="CharacterBody2D" unique_id=664767204]
+collision_layer = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1567375649]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_jowhr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1693532453]
+shape = SubResource("CircleShape2D_jowhr")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=106713954]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1677291014]
+shape = SubResource("CircleShape2D_lxvb4")
