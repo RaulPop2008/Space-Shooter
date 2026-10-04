@@ -19,6 +19,7 @@ var wave_index:int=0
 var wave_count:int=0
 var enemy_index:int=1
 var can_spawn:bool=true
+var is_waiting:bool=false
 
 func _ready() -> void:
 	pass
@@ -27,36 +28,37 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	enemy_spawning()
 
-func remove_enemy(enemy_name:String):
-	get_node(enemy_name).queue_free()
-
 func enemy_spawning():
 	if can_spawn==true:
 		for i in range(ENEMY_COUNT_WAVE[wave_index]):
 			if ENEMY_WAVES[wave_index][i].z==1:
 				var small=SMALL_ENEMY.instantiate()
 				get_tree().current_scene.add_child(small)
-				small.name=str(enemy_index)
+				small.name="small_"+str(enemy_index)
 				enemy_index+=1
 				small.position.x=ENEMY_WAVES[wave_index][i].x
 				small.position.y=ENEMY_WAVES[wave_index][i].y
 			if ENEMY_WAVES[wave_index][i].z==2:
 				var medium=MEDIUM_ENEMY.instantiate()
 				get_tree().current_scene.add_child(medium)
-				medium.name=str(enemy_index)
+				medium.name="medium_"+str(enemy_index)
 				enemy_index+=1
 				medium.position.x=ENEMY_WAVES[wave_index][i].x
 				medium.position.y=ENEMY_WAVES[wave_index][i].y
 			if ENEMY_WAVES[wave_index][i].z==3:
 				var big=BIG_ENEMY.instantiate()
 				get_tree().current_scene.add_child(big)
-				big.name=str(enemy_index)
+				big.name="big_"+str(enemy_index)
 				enemy_index+=1
 				big.position.x=ENEMY_WAVES[wave_index][i].x
 				big.position.y=ENEMY_WAVES[wave_index][i].y
 		can_spawn=false
-	if wave_count==ENEMY_COUNT_WAVE[wave_index]:
+	if wave_count==ENEMY_COUNT_WAVE[wave_index] and is_waiting==false:
+		is_waiting=true
 		await get_tree().create_timer(1.5).timeout
-		can_spawn==true
-		wave_index+=1
+		can_spawn=true
+		if wave_index<=5:
+			wave_index+=1
 		enemy_index=1
+		wave_count=0
+		is_waiting=false

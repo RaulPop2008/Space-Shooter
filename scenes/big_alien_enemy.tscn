@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://bihov20c4ywxv"]
 
+[ext_resource type="Script" uid="uid://doafxse146ede" path="res://scripts/big_alien_enemy.gd" id="1_5ibvj"]
 [ext_resource type="Texture2D" uid="uid://yak1jis3ddwr" path="res://sprites/sr2d604b0b7bc53.png" id="1_jowhr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jowhr"]
@@ -10,6 +11,7 @@ radius = 71.11259
 
 [node name="BigAlienEnemy" type="CharacterBody2D" unique_id=664767204]
 collision_layer = 0
+script = ExtResource("1_5ibvj")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1567375649]
 scale = Vector2(0.1, 0.1)

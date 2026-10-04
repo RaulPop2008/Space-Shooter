@@ -13,4 +13,6 @@ func _process(delta: float) -> void:
 
 func _on_laser_hurtbox_area_entered(area: Area2D) -> void:
 	queue_free()
-	World.remove_enemy(area.get_parent().name)
+	print(area.get_parent().name)
+	area.get_parent().queue_free()
+	World.wave_count+=1
