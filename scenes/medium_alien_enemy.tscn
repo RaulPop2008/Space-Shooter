@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://c306xshguyp5o"]
 
+[ext_resource type="Script" uid="uid://b2jsie7v87ies" path="res://scripts/medium_alien_enemy.gd" id="1_lxvb4"]
 [ext_resource type="Texture2D" uid="uid://dveooigrr77hr" path="res://sprites/sr2e7cd2c8dc3ff.png" id="1_xb2hp"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nj2q2"]
@@ -8,8 +9,9 @@ radius = 51.24451
 [sub_resource type="CircleShape2D" id="CircleShape2D_xb2hp"]
 radius = 70.11419
 
-[node name="MediumAlienEnemy" type="CharacterBody2D" unique_id=90342230]
+[node name="MediumAlienEnemy" type="CharacterBody2D" unique_id=90342230 groups=["enemies"]]
 collision_layer = 0
+script = ExtResource("1_lxvb4")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=149382847]
 scale = Vector2(0.1, 0.1)

@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cxgxvh4na33aa" path="res://sprites/sr28ac7e88e93cc.png" id="1_nnsk1"]
 [ext_resource type="PackedScene" uid="uid://b8i8pndl7ssvd" path="res://scenes/player.tscn" id="2_rwgxs"]
+[ext_resource type="Script" uid="uid://c4k22umc5bajo" path="res://scripts/UI.gd" id="3_4wyf3"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_soqyk"]
 b = Vector2(0, 1600)
@@ -42,3 +43,38 @@ texture = ExtResource("1_nnsk1")
 position = Vector2(600, 1200)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=281350676]
+script = ExtResource("3_4wyf3")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer" unique_id=1766275136]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="CanvasLayer/MarginContainer" unique_id=75979715]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 64
+text = "You Lose!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="CanvasLayer/MarginContainer" unique_id=656467085]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 64
+text = "You Win!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="CanvasLayer/MarginContainer" unique_id=1043370634]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+theme_override_font_sizes/font_size = 48
+text = "Score: "

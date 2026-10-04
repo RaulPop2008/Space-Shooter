@@ -10,9 +10,6 @@ func _process(delta: float) -> void:
 		get_tree().current_scene.remove_child(self)
 	move_and_slide()
 
-
 func _on_laser_hurtbox_area_entered(area: Area2D) -> void:
 	queue_free()
-	print(area.get_parent().name)
-	area.get_parent().queue_free()
-	World.wave_count+=1
+	area.get_parent().lives-=1

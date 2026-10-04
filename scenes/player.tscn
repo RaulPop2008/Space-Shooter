@@ -9,6 +9,9 @@ size = Vector2(104, 34)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qhqgy"]
 size = Vector2(32, 88)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_soqyk"]
+radius = 57.035076
+
 [node name="Player" type="CharacterBody2D" unique_id=92526806]
 collision_layer = 0
 script = ExtResource("1_g2els")
@@ -27,3 +30,13 @@ shape = SubResource("RectangleShape2D_qhqgy")
 
 [node name="LaserStartingPosition" type="Marker2D" parent="." unique_id=1288126248]
 position = Vector2(0, -40)
+
+[node name="Area2D" type="Area2D" parent="." unique_id=369683056]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=104805236]
+position = Vector2(1, 6)
+shape = SubResource("CircleShape2D_soqyk")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

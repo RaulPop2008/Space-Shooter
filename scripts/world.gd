@@ -15,20 +15,24 @@ const SMALL_ENEMY:PackedScene=preload("res://scenes/small_alien_enemy.tscn")
 const MEDIUM_ENEMY:PackedScene=preload("res://scenes/medium_alien_enemy.tscn")
 const BIG_ENEMY:PackedScene=preload("res://scenes/big_alien_enemy.tscn")
 
+var win_lose:int=0
+
 var wave_index:int=0
 var wave_count:int=0
 var enemy_index:int=1
 var can_spawn:bool=true
 var is_waiting:bool=false
+var kill_count:int=0
 
 func _ready() -> void:
 	pass
-
 
 func _process(delta: float) -> void:
 	enemy_spawning()
 
 func enemy_spawning():
+	if ENEMY_COUNT_WAVE[6]==wave_count:
+		win_lose=1
 	if can_spawn==true:
 		for i in range(ENEMY_COUNT_WAVE[wave_index]):
 			if ENEMY_WAVES[wave_index][i].z==1:
@@ -53,7 +57,7 @@ func enemy_spawning():
 				big.position.x=ENEMY_WAVES[wave_index][i].x
 				big.position.y=ENEMY_WAVES[wave_index][i].y
 		can_spawn=false
-	if wave_count==ENEMY_COUNT_WAVE[wave_index] and is_waiting==false:
+	if wave_count==ENEMY_COUNT_WAVE[wave_index] and is_waiting==false and wave_index!=6:
 		is_waiting=true
 		await get_tree().create_timer(1.5).timeout
 		can_spawn=true
@@ -62,3 +66,14 @@ func enemy_spawning():
 		enemy_index=1
 		wave_count=0
 		is_waiting=false
+
+func reset():
+	get_tree().call_group("enemies", "queue_free")
+	wave_index=0
+	wave_count=0
+	is_waiting=false
+	kill_count=0
+	win_lose=0
+	enemy_index=1
+	await get_tree().create_timer(5).timeout
+	can_spawn=true
